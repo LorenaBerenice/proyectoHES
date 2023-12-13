@@ -1,0 +1,31 @@
+<!-- template.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<a href="{% url 'formularioRegistro' %}">
+    <button class="btn btn-success">Ir al Formulario</button>
+</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Numero de Control</th>
+            <th>Carrera</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for registro in registros %}
+            <tr>
+                <td>{{ registro.nombre }}</td>
+                <td>{{ registro.id_alumno }}</td>
+                <td>{{ registro.carrera }}</td>
+                <td>
+                    <a href="{% url 'editar_registro' registro.id %}" class="btn btn-info">Editar</a> |
+                    <a href="{% url 'eliminar_registro' registro.id %}" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
